@@ -146,7 +146,7 @@ function start_analysis(theMonth, theYear) {
         //replacenewvals(monthsArrayName[i]);
       }
     }
-
+    //
 
     //
     // Function to call bill amounts into an array
