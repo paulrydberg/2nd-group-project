@@ -142,11 +142,11 @@ function start_analysis(theMonth, theYear) {
       console.log('No Data In Table! Add some expenses!');
     } else {
       for (var i = 0; i < monthsArrayName.length; i++) {
-        month = i + 1;
-        replacenewvals(monthsArrayName[i]);
+        //month = i + 1;
+        //replacenewvals(monthsArrayName[i]);
       }
     }
-
+    //
 
     //
     // Function to call bill amounts into an array
@@ -505,110 +505,110 @@ function start_analysis(theMonth, theYear) {
 
     //console.log(billsObj);
 
-    function updateRecordJan(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
+    // function updateRecordJan(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
 
-    function updateRecordFeb(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
+    // function updateRecordFeb(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
 
-    function updateRecordMar(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
+    // function updateRecordMar(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
 
-    function updateRecordApr(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
+    // function updateRecordApr(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
 
-    function updateRecordJun(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
+    // function updateRecordJun(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
 
-    function updateRecordJul(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
-    function updateRecordAug(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
-    function updateRecordSep(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
-    function updateRecordOct(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
-    function updateRecordNov(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
-    function updateRecordDec(_id, input) {
-      db.Expense.update(
-        { jan: input }, //'2001-01-02'
-        { where: { id: _id } }
-      )
-    }
-
-
-    var newDateYo, newMonth;
-
-    if (parseInt(finalDueDates[0]) < 10) {
-      newDateYo = '0' + finalDueDates[0].toString();
-    } else {
-      newDateYo = finalDueDates[0];
-    }
-
-    if (month < 10) {
-      newMonth = '0' + month;
-    } else {
-      newMonth = month;
-    }
-
-    var Date_forSequelize = year + '-' + newMonth + '-' + newDateYo;
+    // function updateRecordJul(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
+    // function updateRecordAug(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
+    // function updateRecordSep(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
+    // function updateRecordOct(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
+    // function updateRecordNov(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
+    // function updateRecordDec(_id, input) {
+    //   db.Expense.update(
+    //     { jan: input }, //'2001-01-02'
+    //     { where: { id: _id } }
+    //   )
+    // }
 
 
-    function replacenewvals(monthVal) {
-      for (var i = 0; i < bills.length; i++) {
-        if (result[i].monthVal == null) {
-          //month = 5;
-          //console.log(finalDueDates);
+    // var newDateYo, newMonth;
+
+    // if (parseInt(finalDueDates[0]) < 10) {
+    //   newDateYo = '0' + finalDueDates[0].toString();
+    // } else {
+    //   newDateYo = finalDueDates[0];
+    // }
+
+    // if (month < 10) {
+    //   newMonth = '0' + month;
+    // } else {
+    //   newMonth = month;
+    // }
+
+    // var Date_forSequelize = year + '-' + newMonth + '-' + newDateYo;
 
 
-          //updateRecordJan(billsIDArray[i], '2001-01-02');
-          //updateRecordFeb(billsIDArray[i], '2001-01-02');
+    // function replacenewvals(monthVal) {
+    //   for (var i = 0; i < bills.length; i++) {
+    //     if (result[i].monthVal == null) {
+    //       //month = 5;
+    //       //console.log(finalDueDates);
 
-          //console.log(monthVal + ': it works');
-        }
-      }
-    }
+
+    //       //updateRecordJan(billsIDArray[i], '2001-01-02');
+    //       //updateRecordFeb(billsIDArray[i], '2001-01-02');
+
+    //       //console.log(monthVal + ': it works');
+    //     }
+    //   }
+    // }
 
 
 
