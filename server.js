@@ -6,7 +6,6 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-require("dotenv").config();
 const _ = require("lodash");
 const util = require('util')
 const moment = require('moment');
@@ -56,7 +55,9 @@ db.sequelize.sync().then(function () {
   });
 });
 
-function start_analysis() {
+var globalObj = {};
+
+function start_analysis(theMonth, theYear) {
   request('http://localhost:3000/api/expenses', function (error, response, body) {
     //console.log('error:', error); // Print the error if one occurred
     //console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
@@ -64,7 +65,19 @@ function start_analysis() {
     //return body;
     rawData = JSON.parse(body);
 
+    // Gets the current unix time
+    let nowUnix = moment().valueOf();
 
+    // Convert to this format "2018-09-25T02:24:43-05:00"
+    let momentTime = moment(nowUnix).format();
+
+    // Extracting current date from above variable
+    var year = parseInt(momentTime[0] + momentTime[1] + momentTime[2] + momentTime[3]);
+    var month = parseInt(momentTime[5] + momentTime[6]);
+    var day = parseInt(momentTime[8] + momentTime[9]);
+
+    month = theMonth;
+    year = theYear;
 
     function objLog(Obj) {
       console.log(util.inspect(Obj, { showHidden: false, depth: null }));
@@ -206,16 +219,7 @@ function start_analysis() {
 
 
 
-    // Gets the current unix time
-    let nowUnix = moment().valueOf();
 
-    // Convert to this format "2018-09-25T02:24:43-05:00"
-    let momentTime = moment(nowUnix).format();
-
-    // Extracting current date from above variable
-    var year = parseInt(momentTime[0] + momentTime[1] + momentTime[2] + momentTime[3]);
-    var month = parseInt(momentTime[5] + momentTime[6]);
-    var day = parseInt(momentTime[8] + momentTime[9]);
 
 
 
@@ -513,38 +517,55 @@ Number of Bills This Month: ${bills.length}
 ================================
 `);
 
-    db.Expense
-      .findOrCreate({ where: { id: '3' }, defaults: { date2: finalDueDates[0] } })
-      .spread((user, created) => {
-        console.log(user.get({
-          plain: true
-        }))
-        console.log(created)
 
-        /*
-         findOrCreate returns an array containing the object that was found or created and a boolean that will be true if a new object was created and false if not, like so:
-    
-        [ {
-            username: 'sdepold',
-            job: 'Technical Lead JavaScript',
-            id: 1,
-            createdAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET),
-            updatedAt: Fri Mar 22 2013 21: 28: 34 GMT + 0100(CET)
-          },
-          true ]
-    
-     In the example above, the "spread" on line 39 divides the array into its 2 parts and passes them as arguments to the callback function defined beginning at line 39, which treats them as "user" and "created" in this case. (So "user" will be the object from index 0 of the returned array and "created" will equal "true".)
-        */
-      })
+    var monthsArrayName = ['jan', 'feb', 'mar', 'apr', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+    function updateRecord() {
+      db.Expense.update(
+        { date2: '2001-01-02' },
+        { where: { id: 3 } }
+      )
+    }
+
+    if (bills.length == '0') {
+      console.log('No Data In Table! Add some expenses!');
+    } else {
+      for (var i = 0; i < monthsArrayName.length; i++) {
+        replacenewvals(monthsArrayName[i]);
+      }
+    }
+
+    function replacenewvals(monthVal) {
+      for (var i = 0; i < bills.length; i++) {
+        if (result[i].monthVal == null) {
+          //month = 5;
+          //console.log(finalDueDates);
+
+          //updateRecord();
+          //console.log(monthVal + ': it works');
+        }
+      }
+    }
 
 
+
+
+    //console.log(result[1].date2);
   });
+
+
 }
 
-//start_analysis();
+function doTheThing() {
+  start_analysis(9, 2018);
+  //console.log('exported val: ' + start_analysis(6, 2018));
+
+}
 
 
-setInterval(start_analysis, 5000);
+
+
+setInterval(doTheThing, 5000);
 
 
 
