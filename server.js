@@ -76,8 +76,7 @@ function start_analysis(theMonth, theYear) {
     var month = parseInt(momentTime[5] + momentTime[6]);
     var day = parseInt(momentTime[8] + momentTime[9]);
 
-    month = theMonth;
-    year = theYear;
+
 
     function objLog(Obj) {
       console.log(util.inspect(Obj, { showHidden: false, depth: null }));
@@ -86,7 +85,8 @@ function start_analysis(theMonth, theYear) {
     //objLog(rawData);
 
 
-
+    month = theMonth;
+    year = theYear;
 
     let result;
 
@@ -132,6 +132,20 @@ function start_analysis(theMonth, theYear) {
     let bills = Object.keys(result).map(function (key) {
       return result[key];
     });
+
+
+
+    var monthsArrayName = ['jan', 'feb', 'mar', 'apr', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+
+
+    if (bills.length == '0') {
+      console.log('No Data In Table! Add some expenses!');
+    } else {
+      for (var i = 0; i < monthsArrayName.length; i++) {
+        month = i + 1;
+        replacenewvals(monthsArrayName[i]);
+      }
+    }
 
 
     //
@@ -490,6 +504,120 @@ function start_analysis(theMonth, theYear) {
     //var bills_to_savings_ratio = (billSum / savings_after_bills) * 100;
 
     //console.log(billsObj);
+
+    function updateRecordJan(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+
+    function updateRecordFeb(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+
+    function updateRecordMar(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+
+    function updateRecordApr(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+
+    function updateRecordJun(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+
+    function updateRecordJul(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+    function updateRecordAug(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+    function updateRecordSep(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+    function updateRecordOct(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+    function updateRecordNov(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+    function updateRecordDec(_id, input) {
+      db.Expense.update(
+        { jan: input }, //'2001-01-02'
+        { where: { id: _id } }
+      )
+    }
+
+
+    var newDateYo, newMonth;
+
+    if (parseInt(finalDueDates[0]) < 10) {
+      newDateYo = '0' + finalDueDates[0].toString();
+    } else {
+      newDateYo = finalDueDates[0];
+    }
+
+    if (month < 10) {
+      newMonth = '0' + month;
+    } else {
+      newMonth = month;
+    }
+
+    var Date_forSequelize = year + '-' + newMonth + '-' + newDateYo;
+
+
+    function replacenewvals(monthVal) {
+      for (var i = 0; i < bills.length; i++) {
+        if (result[i].monthVal == null) {
+          //month = 5;
+          //console.log(finalDueDates);
+
+
+          //updateRecordJan(billsIDArray[i], '2001-01-02');
+          //updateRecordFeb(billsIDArray[i], '2001-01-02');
+
+          //console.log(monthVal + ': it works');
+        }
+      }
+    }
+
+
+
+    month = theMonth;
+    year = theYear;
+
+
+
+
     console.log(`
 ================================
 
@@ -518,41 +646,13 @@ Number of Bills This Month: ${bills.length}
 `);
 
 
-    var monthsArrayName = ['jan', 'feb', 'mar', 'apr', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
 
-    function updateRecord() {
-      db.Expense.update(
-        { date2: '2001-01-02' },
-        { where: { id: 3 } }
-      )
-    }
-
-    if (bills.length == '0') {
-      console.log('No Data In Table! Add some expenses!');
-    } else {
-      for (var i = 0; i < monthsArrayName.length; i++) {
-        replacenewvals(monthsArrayName[i]);
-      }
-    }
-
-    function replacenewvals(monthVal) {
-      for (var i = 0; i < bills.length; i++) {
-        if (result[i].monthVal == null) {
-          //month = 5;
-          //console.log(finalDueDates);
-
-          //updateRecord();
-          //console.log(monthVal + ': it works');
-        }
-      }
-    }
 
 
 
 
     //console.log(result[1].date2);
   });
-
 
 }
 
